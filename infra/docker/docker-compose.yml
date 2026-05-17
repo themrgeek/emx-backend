@@ -1,0 +1,46 @@
+services:
+  redis:
+    image: redis:7-alpine
+    ports:
+      - '6379:6379'
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  auth-service:
+    build:
+      context: ../..
+      dockerfile: infra/docker/Dockerfile.dev
+    ports:
+      - '4001:4001'
+    environment:
+      NODE_ENV: development
+      PORT: 4001
+      HOST: 0.0.0.0
+      LOG_LEVEL: info
+      REDIS_URL: redis://redis:6379
+    depends_on:
+      redis:
+        condition: service_healthy
+    volumes:
+      - ../..:/app
+      - /app/node_modules
+    command: pnpm --filter @emx/auth-service dev
+
+  api-gateway:
+    build:
+      context: ../..
+      dockerfile: infra/docker/Dockerfile.dev
+    ports:
+      - '4000:4000'
+    environment:
+      NODE_ENV: development
+      PORT: 4000
+      HOST: 0.0.0.0
+      LOG_LEVEL: info
+    volumes:
+      - ../..:/app
+      - /app/node_modules
+    command: pnpm --filter @emx/api-gateway dev

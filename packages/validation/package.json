@@ -1,0 +1,29 @@
+{
+  "name": "@emx/validation",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@emx/eslint-config": "workspace:*",
+    "@emx/typescript-config": "workspace:*",
+    "eslint": "^10.4.0",
+    "typescript": "^5.8.0"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "name": "@emx/logger",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "pino": "^9.7.0"
+  },
+  "devDependencies": {
+    "@emx/eslint-config": "workspace:*",
+    "@emx/typescript-config": "workspace:*",
+    "@types/node": "^25.8.0",
+    "eslint": "^10.4.0",
+    "typescript": "^5.8.0"
+  }
+}

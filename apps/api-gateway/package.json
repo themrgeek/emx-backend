@@ -1,0 +1,26 @@
+{
+  "name": "@emx/api-gateway",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@emx/config": "workspace:*",
+    "@emx/logger": "workspace:*",
+    "@emx/validation": "workspace:*",
+    "fastify": "^5.8.5"
+  },
+  "devDependencies": {
+    "@emx/eslint-config": "workspace:*",
+    "@emx/typescript-config": "workspace:*",
+    "@types/node": "^25.8.0",
+    "eslint": "^10.4.0",
+    "tsx": "^4.22.1",
+    "typescript": "^5.8.0"
+  }
+}

@@ -1,0 +1,203 @@
+---
+alwaysApply: true
+---
+
+# EmX Backend Engineering Rules
+
+## Core Philosophy
+
+This project must follow production-grade backend engineering standards.
+
+Prioritize:
+
+- scalability
+- maintainability
+- observability
+- strict typing
+- clean architecture
+- developer experience
+
+DO NOT optimize for quick hacks.
+
+---
+
+# TypeScript Rules
+
+- Always use strict mode
+- Never use `any`
+- Prefer `unknown` over `any`
+- Use explicit return types for exported functions
+- Use readonly where applicable
+- Use discriminated unions when possible
+- Prefer type safety over convenience
+
+Required compiler settings:
+
+- strict
+- noUncheckedIndexedAccess
+- exactOptionalPropertyTypes
+
+---
+
+# Architecture Rules
+
+- Follow modular monorepo architecture
+- Keep services isolated
+- Shared logic belongs in packages/
+- Never duplicate infrastructure code
+- Never place business logic inside routes/controllers
+- Use layered architecture:
+  - interfaces
+  - application
+  - domain
+  - infrastructure
+
+---
+
+# API Rules
+
+- Use Fastify only
+- Use async/await consistently
+- Use schema validation
+- All endpoints must:
+  - validate input
+  - handle errors properly
+  - return typed responses
+
+- Add `/health` endpoint to every service
+- APIs must be versionable
+
+---
+
+# Validation Rules
+
+- Use Zod for validation
+- Validate:
+  - env vars
+  - request body
+  - params
+  - query
+  - headers
+
+Never trust incoming data.
+
+---
+
+# Environment Rules
+
+- Never access process.env directly outside config package
+- Use centralized env validation
+- Fail fast if env validation fails
+
+---
+
+# Logging Rules
+
+- Use structured logging
+- Avoid console.log except bootstrap startup
+- Logs must be machine-readable
+- Prepare for future correlation IDs
+
+---
+
+# Docker Rules
+
+- Use multi-stage Docker builds
+- Keep images minimal
+- Separate Dockerfile.dev and production Dockerfile
+- Use docker-compose for local infrastructure
+
+---
+
+# Folder Structure Rules
+
+Use:
+
+- kebab-case for files
+- PascalCase for types/classes
+- camelCase for functions/variables
+
+Avoid:
+
+- giant files
+- deeply nested logic
+- mixed responsibilities
+
+---
+
+# Dependency Rules
+
+Prefer:
+
+- lightweight libraries
+- composable utilities
+
+Avoid:
+
+- bloated abstractions
+- unnecessary frameworks
+- magic decorators
+
+---
+
+# Security Rules
+
+- Never trust client input
+- Prepare architecture for RBAC
+- Sanitize inputs
+- Avoid leaking internal errors
+- Validate all configs
+
+---
+
+# Performance Rules
+
+- Prepare for Redis caching
+- Avoid unnecessary allocations
+- Use async patterns properly
+- Avoid blocking operations
+
+---
+
+# Monorepo Rules
+
+- Shared configs belong in packages/
+- Shared utilities belong in packages/
+- Services belong in apps/
+- Infrastructure belongs in infra/
+
+---
+
+# Code Quality Rules
+
+Every package must support:
+
+- build
+- dev
+- lint
+- typecheck
+
+All code must:
+
+- pass ESLint
+- pass TypeScript checks
+- be formatted with Prettier
+
+---
+
+# Future Readiness
+
+Architecture must be designed for:
+
+- Supabase
+- Redis
+- BullMQ
+- Pub/Sub
+- OpenTelemetry
+- Prometheus
+- Grafana
+- Kubernetes
+- GitHub Actions
+- CI/CD pipelines
+
+Even if not implemented yet.
