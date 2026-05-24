@@ -33,3 +33,10 @@ jobs:
 
       - name: Build
         run: pnpm build
+      # 1. Start the Docker daemon (GitHub Actions runners have Docker pre-installed)
+      - name: Start Local Supabase Stack
+        run: pnpm db:start # Or npx supabase start
+
+      # 2. Verify that your migrations execute without throwing SQL errors
+      - name: Verify Database Migrations
+        run: pnpm db:migrate # Or npx supabase migration up
