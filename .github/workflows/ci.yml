@@ -33,10 +33,17 @@ jobs:
 
       - name: Build
         run: pnpm build
-      # 1. Start the Docker daemon (GitHub Actions runners have Docker pre-installed)
-      - name: Start Local Supabase Stack
-        run: pnpm db:start # Or npx supabase start
 
-      # 2. Verify that your migrations execute without throwing SQL errors
+      # 1. Install Supabase CLI binary onto the Ubuntu runner environment
+      - name: Setup Supabase CLI
+        uses: supabase/setup-cli@v1
+        with:
+          version: latest
+
+      # 2. Boot up the local Supabase container infrastructure via Docker
+      - name: Start Local Supabase Stack
+        run: pnpm db:start
+
+      # 3. Wipes the testing DB and runs all your migrations from scratch to verify structural validity
       - name: Verify Database Migrations
-        run: pnpm db:migrate # Or npx supabase migration up
+        run: pnpm db:reset
