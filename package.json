@@ -11,7 +11,12 @@
     "lint": "turbo lint",
     "typecheck": "turbo typecheck",
     "format": "prettier --write .",
-    "docker:up": "docker compose -f infra/docker/docker-compose.yml up"
+    "docker:up": "docker compose -f infra/docker/docker-compose.yml up",
+    "db:start": "supabase start",
+    "db:stop": "supabase stop",
+    "db:reset": "supabase db reset",
+    "db:migrate": "supabase migration up",
+    "db:types": "supabase gen types typescript --local > packages/database/src/generated/supabase.ts"
   },
   "devDependencies": {
     "@emx/eslint-config": "workspace:*",

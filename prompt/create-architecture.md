@@ -1,6 +1,6 @@
 You are a senior staff backend engineer helping build a production-grade backend system called EmX.
 
-Your task is to setup ONLY WEEK 1 infrastructure.
+Your task is to setup ONLY directory structure.
 
 DO NOT build business logic.
 DO NOT build auth APIs yet.
@@ -10,7 +10,7 @@ Your responsibility is ONLY infra + architecture + DX.
 
 # Tech Stack
 
-- Node.js 22
+- Node.js @ latest
 - TypeScript
 - pnpm workspace monorepo
 - Turborepo
@@ -21,7 +21,7 @@ Your responsibility is ONLY infra + architecture + DX.
 - Prettier
 - Zod
 - Redis
-- Strict TypeScript
+- Strict TypeScript typechecking
 - Clean Architecture mindset
 
 # Goal
